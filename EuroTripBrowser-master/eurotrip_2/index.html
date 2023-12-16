@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EuroTrip</title>
+
+    <link href="light-theme.css" rel="stylesheet" id="theme-link"/>
+    <link href='https://fonts.googleapis.com/css?family=Dhurjati' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <script src="eurotrip.js" defer></script>
+    <script src=" https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css " rel="stylesheet">
+</head>
+
+<body>
+<header><h2>EuroTrip</h2></header>
+<main>
+
+    <dialog id="nameinput">
+        <form id="name-form">
+            <label for="name-input">Insert Your Name<br>
+            </label><input type="text" id="name-input" required><br>
+            <input id="submitbutton" type="submit" value="New Game">
+        </form>
+    </dialog>
+
+    <dialog id="reDialog">
+        <div id="reDialogContent"></div>
+        <button class="cancel" id="cancelButtonRe">Cancel</button>
+    </dialog>
+
+    <dialog id="helpDialog">
+        <p>Your goal is to find 5 stamps from the biggest cities in Europe. Good luck!</p>
+        <button id="moreInformation">More information</button>
+        <button id="storyButton">Show the Story</button>
+        <button class="cancel" id="cancelHelpButton">Cancel</button>
+    </dialog>
+
+    <dialog id="moreInformationDialog">
+        <p>Your goal is to find 5 stamps from the biggest cities in Europe. Good luck!<br>
+        Travel around Europe, manage your money, and pay attention to your range amount.<br>
+        If you run out of money, you can always take a loan.<br>
+        You can buy more range with money (1km = 1€).
+        <br><br>
+        <img class="small icon" src="image/reward.svg" alt="stamps icon" height="20px"> View your stamps <br>
+        <img class="small icon" src="image/shop.svg" alt="shop icon" height="20px"> Buy range <br>
+        <img class="small icon" src="image/piggy-bank.svg" alt="bank icon" height="20px"> Take a loan <br><br>
+        Visited airports are listed above the stamps, shop, and bank.</p>
+        <br>
+        <button class="cancel" id="cancelButton2">Cancel</button>
+    </dialog>
+
+    <dialog id="GameOverDialog">
+        <h2>☠ Game Over ☠</h2>
+        <button id="restartGame">Restart Game</button>
+    </dialog>
+
+    <dialog id="customAlert">
+        <p> You are out of range! </p>
+        <button id="buyRange">Buy range</button>
+        <button id="takeLoan">Take loan</button>
+        <button class="cancel" id="cancelAlertButton">Cancel</button>
+    </dialog>
+
+    <dialog id="stampAchievedDialog">
+        <h3>Yay! You got a stamp!</h3>
+        <img id="stampImage"><br>
+        <button id="openPassport">Open Passport</button>
+        <button class="cancel" id="stampAchievedCancel">Cancel</button>
+    </dialog>
+
+    <dialog id="imagePopup">
+        <img id="popupImage" src="" alt="Popup Image">
+        <button id="closePopupButton">Close</button>
+    </dialog>
+
+    <dialog id="shopDialog">
+        <p>Do you want to buy range?</p>
+        <button id="buyRangeButton">Yes</button>
+        <button class="cancel" id="cancelBuyButton">Cancel</button>
+    </dialog>
+
+    <dialog id="rangeAmountDialog">
+        <p>Enter range amount:</p>
+        <label for="rangeAmount">Amount:</label>
+        <input type="number" id="rangeAmount" min="1" required><br>
+        <button id="confirmBuyButton">Confirm</button>
+        <button class="cancel" id="cancelBuyButton2">Cancel</button>
+    </dialog>
+
+    <dialog id="bankDialog">
+        <p>Do you want to take loan?</p>
+        <button id="TakeLoanButton">Yes</button>
+        <button class="cancel" id="cancelLoanButton">No</button>
+    </dialog>
+
+    <dialog id="LoanAmountDialog">
+        <p>Enter loan amount (1-<span id="maxloanleft"></span>):</p>
+        <label for="LoanAmount">Amount:</label>
+        <input type="number" id="LoanAmount" min="1" required><br>
+        <button id="confirmLoanButton">Confirm</button>
+        <button class="cancel" id="cancelLoanButton2">Cancel</button>
+    </dialog>
+
+    <dialog id="PassportDialog">
+        <section id="passport">
+            <div class="passportslot" id="slot1"><p class="label" id="label1"></p></div>
+            <div class="passportslot" id="slot2"><p class="label" id="label2"></p></div>
+            <div class="passportslot" id="slot3"><p class="label" id="label3"></p></div>
+            <div class="passportslot" id="slot4"><p class="label" id="label4"></p></div>
+            <div class="passportslot" id="slot5"><p class="label" id="label5"></p></div>
+            <div class="passportslot" id="slot6"><p class="label" id="label6"></p></div>
+            <div class="passportslot" id="slot7"><p class="label" id="label7"></p></div>
+        </section>
+        <button class="cancel" id="cancelButtonPassport">Close</button>
+    </dialog>
+
+    <dialog id="storyDialog">
+    <p>
+        Great, summer vacation has finally arrived, and you have a unique opportunity to spend it in<br>
+        the spirit of the first-ever Eurotrip-appro event! <br><br>
+        The task of these events is to travel around Europe and collect 5 stamps in your passport.<br>
+        Team C student association is providing each participant <br>
+        with a travel budget and some freely usable kilometers from the AirMetro airline.<br><br>
+        There might be all sorts of things happening along the journey, so stay alert!<br>
+        Fortunately, you have the student loan at your disposal and can withdraw it if necessary.<br><br>
+        Keep in mind, though, that the loan is limited. Good luck on your trip!<br>
+        <button class="cancel" id="cancelButton3">Close</button>
+    </p>
+    </dialog>
+
+    <dialog id="fireworksDialog">
+    <div class="fireworks-container">
+    </div>
+    <p>Congratulations! You've collected 5 stamps!</p>
+    <button id="scorebutton">Scores</button> <button id="seepassportbutton">See Passport</button> <button id="newGame">New Game</button>
+    </dialog>
+
+    <dialog id="scoredialog">
+        <h3>Highscores</h3>
+        <table id="scoretable">
+        </table>
+        <span id="myscore"></span><br>
+        <button id="scorecancel">Close</button>
+    </dialog>
+
+    <div id="map"></div>
+    <div class="boxes">
+        <section>
+            <ul id="biglabels">
+                <li><h4><img src="image/money-bag.svg" alt="money bag icon" width="20px"> Money</h4><span
+                        class="gameinfofield" id="moneyfield"></span></li>
+                <li><h4><img src="image/fuel.svg" alt="fuel icon" width="20px"> Range</h4><span class="gameinfofield"
+                                                                                           id="rangefield"></span></li>
+                <li><h4><img src="image/reward.svg" alt="reward icon" width="20px"> Stamps</h4><span class="gameinfofield"
+                                                                                                id="stampfield"></span>
+                </li>
+            </ul>
+        </section>
+        <section id="smallinfo">
+            <p id="p_name"></p>
+            <p><span id="p_location"></span><span id="small-notification"></span></p>
+            <p><b>Score: </b><span id="p_score"></span><span id="score-notification"></span></p>
+        </section>
+        <section>
+            <ul>
+                <li class="button1" id="travel_button"><img class="bigicon" src="image/reward.svg" alt="passport button">
+                </li>
+                <li class="button2" id="openShopDialogButton"><img class="bigicon" src="image/shop.svg" alt="shop button">
+                </li>
+                <li class="button3" id="openBankDialogButton"><img class="bigicon" src="image/piggy-bank.svg" alt="bank button"></li>
+            </ul>
+        </section>
+        <section>Visited airports: <br><select id="visited_dropdown"></select></section>
+    </div>
+</main>
+<footer>
+    <button class="footerbutton" id="openHelpDialogButton">?</button>
+    <button class="footerbutton" id="darkmodebtn">Dark Mode</button>
+    <button class="footerbutton" id="restartbutton">New Game</button>
+    <button class="footerbutton" id="highscorebutton">High Scores</button>
+</footer>
+</body>
+</html>

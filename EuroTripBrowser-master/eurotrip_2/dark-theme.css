@@ -1,0 +1,308 @@
+body {
+    font-family: 'Dhurjati', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #40596B;
+}
+
+#map {
+    width: 50vmax;
+    height: 80vmin;
+    background-color: silver;
+    margin: 10px;
+    position: relative;
+}
+
+#stampAchievedDialog {
+    color: black;
+    width: fit-content;
+    background-color: #FFD15C;
+    border-color: #c99621;
+}
+
+#stampAchievedDialog button {
+    background-color: black;
+    border-color: black;
+    color: white;
+}
+
+#stampAchievedDialog img {
+    height: 90px;
+    width: 90px;
+}
+
+#stampAchievedDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.boxes {
+    width: 100%;
+}
+
+section {
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    flex-grow: 1;
+    max-width: 30%;
+    text-align: center;
+    margin: 10px;
+}
+
+.button1,
+.button2,
+.button3 {
+    background-color: black;
+    position: relative;
+    border-radius: 10px;
+}
+
+.button1:hover,
+.button2:hover,
+.button3:hover {
+    background-color: #263846;
+}
+
+.button1::before,
+.button2::before,
+.button3::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.button1::before {
+    content: "Passport";
+}
+
+.button2::before {
+    content: "Buy range - km";
+}
+
+.button3::before {
+    content: "Take loan - €";
+}
+
+.button1:hover::before,
+.button2:hover::before,
+.button3:hover::before {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+header {
+    text-align: center;
+    color: black;
+}
+
+h2 {
+    color: white;
+    font-size: xx-large;
+    padding: 0;
+    margin: -20px 0 0;
+}
+
+.bigicon {
+    width: 50px;
+    margin: 10px;
+}
+
+.smallicon {
+    width: 20px;
+    height: 20px;
+}
+
+.gameinfofield {
+    font-size: large;
+    padding: -10px;
+    margin: 0;
+}
+
+#moreInformationDialog p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#small-notification {
+    height: 16px;
+}
+
+@keyframes fireworksAnimation {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-200px) rotate(360deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotate(3600deg);
+        opacity: 0;
+    }
+}
+
+#fireworksDialog {
+    animation: fireworksAnimation 2s ease-out;
+}
+
+#PassportDialog {
+    background-image: url("image/passport.png");
+    background-size: 100% 100%;
+    width: 50vw;
+    height: fit-content;
+    overflow: hidden;
+    border: 0;
+    background-color: transparent;
+}
+
+#passport {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.passportslot {
+    width: 140px;
+    height: 160px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.passportslot img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.passportslot:nth-child(1),
+.passportslot:nth-child(4),
+.passportslot:nth-child(7) {
+    margin-left: 5vw;
+}
+
+.label {
+    text-align: center;
+    position: absolute;
+    padding-bottom: 0;
+    margin: auto auto 0;
+    bottom: 0;
+}
+
+#GameOverDialog {
+    background-color: black;
+    border-color: #40596B;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#GameOverDialog h2 {
+    color: #F1543F;
+}
+
+
+dialog {
+    color: white;
+    background-color: black;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.cancel {
+    background-color: #92afbb;
+    border-color: #92afbb;
+}
+
+button,
+#submitbutton {
+    padding: 3px;
+    background-color: #90c7de;
+    border-style: outset;
+    border-color: #90c7de;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+}
+
+.footerbutton {
+    color: white;
+    background-color: #40596B;
+    border-color: #40596B;
+    margin-top: 10px;
+}
+
+@keyframes stampAnimation {
+    0% {
+        transform: scale(.1);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.stamped {
+    animation: stampAnimation 1s ease-in-out;
+}
+
+#biglabels {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+h4 {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#moreInformationDialog p {
+    display: inline;
+}
+
+b {
+    color: white;
+}
+
+#smallinfo {
+    font-size: large;
+}
+
+.label {
+    color: black;
+}
+
+#scoretable {
+    width: 20vw;
+    text-align: left;
+}
+.tablenamelabel {
+    color: #FF7058;
+}
